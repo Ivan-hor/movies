@@ -9,6 +9,7 @@ import { observer } from 'mobx-react-lite';
 // Components
 import {
     Greeting,
+    LatestFilmPage,
 } from './pages';
 
 /* Other */
@@ -42,6 +43,7 @@ export const App: FC = observer(() => {
             <Routes>
                 <Route path = '/' element = { <Outlet /> }>
                     <Route path = '/' element = { <Greeting /> } />
+                    <Route path = '/latest-films' element = { <LatestFilmPage /> } />
                 </Route>
 
                 <Route path = '*' element = { <Navigate to = '/' /> } />
