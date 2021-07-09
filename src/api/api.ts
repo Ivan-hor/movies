@@ -17,8 +17,10 @@ export const api = Object.freeze({
     getReviewsToMovie: (filmId: string) => {
         return axios.get(`${root}/${filmId}/reviews`);
     },
-    getPopularMovies: (page: number) => {
-        return axios.get(`${root}/popular-movies?page=${page}`);
+    getPopularMovies: async (page: number) => {
+        const response =  await axios.get(`${root}/popular-movies?page=${page}`);
+
+        return response.data.data;
     },
     getTrendingMovies: (time: string) => {
         return axios.get(`${root}/trending/movie/${time}`);

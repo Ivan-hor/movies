@@ -7,12 +7,10 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import { observer } from 'mobx-react-lite';
 
 // Components
-import {
-    Greeting,
-} from './pages';
 
 /* Other */
 import { useStore } from './hooks';
+import { PopularFilms } from './pages/PopularFilms';
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -41,7 +39,8 @@ export const App: FC = observer(() => {
 
             <Routes>
                 <Route path = '/' element = { <Outlet /> }>
-                    <Route path = '/' element = { <Greeting /> } />
+                    { /* <Route path = '/' element = { <Greeting /> } /> */ }
+                    <Route path = '/popular-films' element = { <PopularFilms /> } />
                 </Route>
 
                 <Route path = '*' element = { <Navigate to = '/' /> } />
