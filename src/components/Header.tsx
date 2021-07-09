@@ -11,10 +11,10 @@ export const HeaderWrapper = () => {
                 theme = 'dark' mode = 'horizontal'
                 defaultSelectedKeys = { ['1'] }>
                 <Menu.Item key = '1'><Link to = '/'>Главная</Link></Menu.Item>
-                <Menu.Item key = '2'><Link to = '/popular-films'>Фильмы</Link></Menu.Item>
-                <Menu.Item key = '3'><Link to = '/top-rated-films'>Популярные фильмы</Link></Menu.Item>
-                <Menu.Item key = '4'><Link to = '/latest-films'>Трендовые фильмы</Link></Menu.Item>
-                <Menu.Item key = '5'><Link to = '/films/:filmId'>Последние вышедшие фильмы</Link></Menu.Item>
+                <Menu.Item key = '2'><Link to = '/films'>Фильмы</Link></Menu.Item>
+                <Menu.Item key = '3'><Link to = '/popular-films'>Популярные фильмы</Link></Menu.Item>
+                <Menu.Item key = '4'><Link to = '/top-rated-films'>Трендовые фильмы</Link></Menu.Item>
+                <Menu.Item key = '5'><Link to = '/latest-films'>Последние вышедшие фильмы</Link></Menu.Item>
             </Menu>
         </Header>
     );
