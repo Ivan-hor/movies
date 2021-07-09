@@ -2,6 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { HeaderWrapper, Logo } from './styles';
 
 export const Header = () => {
+    // TODO: использовать Ant-design компоненты, а не их итоговую вёрстку.
     return (
         <HeaderWrapper className = 'ant-layout-header'>
             <Logo>Movie App</Logo>
