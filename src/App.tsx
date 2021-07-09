@@ -6,10 +6,14 @@ import {
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import { observer } from 'mobx-react-lite';
 
+
 // Components
 import {
     Greeting,
 } from './pages';
+
+// Temp
+import { Test } from './pages/test';
 
 /* Other */
 import { useStore } from './hooks';
@@ -42,6 +46,7 @@ export const App: FC = observer(() => {
             <Routes>
                 <Route path = '/' element = { <Outlet /> }>
                     <Route path = '/' element = { <Greeting /> } />
+                    <Route path = '/popular-films' element = { <Test /> } />
                 </Route>
 
                 <Route path = '*' element = { <Navigate to = '/' /> } />
