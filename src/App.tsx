@@ -14,6 +14,8 @@ import {
 /* Other */
 import { useStore } from './hooks';
 import { PopularFilms } from './pages/PopularFilms';
+import { Header } from './components';
+import { MainWrapper, SectionWrapper } from './components/styles';
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -40,14 +42,22 @@ export const App: FC = observer(() => {
         <>
             <ToastContainer newestOnTop transition = { Slide } />
 
-            <Routes>
-                <Route path = '/' element = { <Outlet /> }>
-                    <Route path = '/' element = { <Greeting /> } />
-                    <Route path = '/popular-films' element = { <PopularFilms /> } />
-                </Route>
+            <SectionWrapper className = 'ant-layout'>
+                <Header />
+                <MainWrapper className = 'ant-layout-content' >
+                    <Routes>
+                        <Route path = '/' element = { <Outlet /> }>
+                            <Route path = '/' element = { <Greeting /> } />
+                            <Route path = '/popular-films' element = { <PopularFilms /> } />
+                        </Route>
 
-                <Route path = '*' element = { <Navigate to = '/' /> } />
-            </Routes>
+                        <Route path = '*' element = { <Navigate to = '/' /> } />
+                    </Routes>
+                </MainWrapper>
+
+            </SectionWrapper>
+
+
         </>
     );
 });

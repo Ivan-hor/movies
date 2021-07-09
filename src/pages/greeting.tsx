@@ -8,11 +8,8 @@ const { Title } = Typography;
 
 export const Greeting = () => {
     return (
-        <>
-            <SectionWrapper className = 'ant-layout'>
-                <Header />
-                <MainWrapper className = 'ant-layout-content' />
-            </SectionWrapper>
-        </>
+        <div>
+            Welcome
+        </div>
     );
 };
