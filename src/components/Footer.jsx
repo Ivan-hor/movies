@@ -1,9 +1,9 @@
+import { FooterWrapper } from './styles';
+
 export const Footer = () => {
     return (
-        <footer
-            className = 'ant-layout-footer'
-            style = { { marginTop: '25px' } }>
+        <FooterWrapper>
             <p>©2021 — Lectrum LLC</p>
-        </footer>
+        </FooterWrapper>
     );
 };
