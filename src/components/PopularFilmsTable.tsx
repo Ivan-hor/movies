@@ -1,4 +1,5 @@
 import { Table, Image } from 'antd';
+import { Link }  from 'react-router-dom';
 import { usePopularFilms } from '../hooks';
 
 
@@ -42,24 +43,14 @@ export const PopularFilmsTable = () => {
             key:       'overview',
             width:     '20%',
         },
-        // {
-        //     title:     'Детали',
-        //     dataIndex: 'details',
-        //     key:       'details',
-        // },
+        {
+            title:     'Детали',
+            dataIndex: 'id',
+            key:       'details',
+            // eslint-disable-next-line
+            render:    (id: number) => <Link to = { `/films/${id}` }>Подробнее...</Link>,
+        },
     ];
-
-    // const data = [
-    //     {
-    //         id:           508943,
-    //         popularity:   4176.6,
-    //         title:        'Luca',
-    //         poster_path:  'https://image.tmdb.org/t/p/original/jTswp6KyDYKtvC52GbHagrZbGvD.jpg',
-    //         vote_count:   2313,
-    //         vote_average: 8.1,
-    //         overview:     'Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface.',
-    //     },
-    // ];
 
     if (query.isFetched) {
         console.log(query.data);
@@ -74,12 +65,4 @@ export const PopularFilmsTable = () => {
     }
 
     return null;
-
-    // return (
-    //     <Table
-    //         columns = { columns }
-    //         dataSource = { data }
-    //         bordered
-    //         title = { () => 'Популярные фильмы' } />
-    // );
 };
