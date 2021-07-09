@@ -13,6 +13,7 @@ import {
 
 /* Other */
 import { useStore } from './hooks';
+import { TopRatedFilms } from './pages/TopRatedFilms';
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -42,6 +43,7 @@ export const App: FC = observer(() => {
             <Routes>
                 <Route path = '/' element = { <Outlet /> }>
                     <Route path = '/' element = { <Greeting /> } />
+                    <Route path = '/top-rated-films' element = { <TopRatedFilms /> } />
                 </Route>
 
                 <Route path = '*' element = { <Navigate to = '/' /> } />
