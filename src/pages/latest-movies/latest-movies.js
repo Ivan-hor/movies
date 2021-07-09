@@ -1,11 +1,135 @@
-import { FC } from 'react';
+import { useEffect, useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import {  Table  } from 'antd';
 
-export const LatestFilmPage: FC = () => {
+import { columns } from './config';
+
+import { useLatestFilms } from '../../hooks';
+import { SectionWrapper, MainWrapper, HeaderWrapper } from '../../components/styles';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
+export const LatestFilmPage = () => {
+    const { data, isFetched } = useLatestFilms();
+
+    const [latestMovie, setLatestMovie] = useState({
+        id:           '',
+        poster_path:  '',
+        title:        '',
+        release_date: '',
+        revenue:      0,
+        status:       '',
+        overview:     '',
+        popularity:   '',
+    });
+
+    useEffect(() => {
+        if (isFetched) {
+            // eslint-disable-next-line promise/catch-or-return
+            data.then((movie) => {
+                setLatestMovie(movie.data.data);
+                console.log(movie.data.data);
+
+                return null;
+            });
+        }
+    }, [isFetched]);
+
+    const dataSource = [
+        {
+            key:          latestMovie.id,
+            poster_path:  <img src = { latestMovie.poster_path } />,
+            title:        latestMovie.title,
+            release_date: latestMovie.release_date,
+            revenue:      latestMovie.revenue,
+            status:       latestMovie.status,
+            popularity:   latestMovie.popularity,
+            overview:     latestMovie.overview,
+            // eslint-disable-next-line react/display-name
+            more:         (movieId) => <Link to = { `/movie-details/${movieId}` }>Детали</Link>,
+        },
+    ];
+
+
     return (
-        <section className = 'ant-layout styles_section__2QkFe'>
-            <main className = 'ant-layout-content'>
-                <div className = 'Toastify'>
-                </div>
+        <SectionWrapper className = 'ant-layout'>
+            <HeaderWrapper className = 'ant-layout-header'>
+                <p className = 'styles_logo__2I-b3'>Movie App</p>
+                <ul
+                    className = 'ant-menu-overflow ant-menu ant-menu-root ant-menu-horizontal ant-menu-dark styles_nav__2Ssjh' role = 'menu'
+                    tabIndex = '0' data-menu-list = 'true'>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-item ant-menu-item-only-child' role = 'menuitem'
+                        tabIndex = '-1' data-menu-id = 'rc-menu-uuid-80608-1-1'
+                        style = { { opacity: '1', order: '0' } }>
+                        <span className = 'ant-menu-title-content'>
+                            <a href = '/'>Главная</a>
+                        </span></li>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-item ant-menu-item-only-child' role = 'menuitem'
+                        tabIndex = '-1' data-menu-id = 'rc-menu-uuid-80608-1-3'
+                        style = { { opacity: '1', order: '1' } }>
+                        <span className = 'ant-menu-title-content'>
+                            <a href = '/movies/films'>Фильмы</a>
+                        </span>
+                    </li>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-item ant-menu-item-only-child' role = 'menuitem'
+                        tabIndex = '-1' data-menu-id = 'rc-menu-uuid-80608-1-2'
+                        style = { { opacity: '1', order: '2' } }>
+                        <span className = 'ant-menu-title-content'>
+                            <a href = '/movies/popular-films'>Популярные фильмы</a>
+                        </span>
+                    </li>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-item ant-menu-item-only-child' role = 'menuitem'
+                        tabIndex = '-1' data-menu-id = 'rc-menu-uuid-80608-1-4'
+                        style = { { opacity: '1', order: '3' } }>
+                        <span className = 'ant-menu-title-content'>
+                            <a href = '/movies/top-rated-films'>Трендовые фильмы</a>
+                        </span>
+                    </li>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-item ant-menu-item-selected ant-menu-item-only-child' role = 'menuitem'
+                        tabIndex = '-1' aria-hidden = 'true'
+                        style = { {
+                            opacity:       '0',
+                            order:         '4',
+                            height:        '0px',
+                            overflowY:     'hidden',
+                            pointerEvents: 'none',
+                            position:      'absolute',
+                        } }>
+                        <span className = 'ant-menu-title-content'>
+                            <NavLink to = '/latest-films'>Последние вышедшие фильмы</NavLink>
+                        </span>
+                    </li>
+                    <li
+                        className = 'ant-menu-overflow-item ant-menu-overflow-item-rest ant-menu-submenu ant-menu-submenu-horizontal ant-menu-submenu-selected' role = 'none'
+                        style = { { opacity: '1', order: '3' } }>
+                        <div
+                            role = 'menuitem' className = 'ant-menu-submenu-title'
+                            tabIndex = '-1' aria-expanded = 'false'
+                            aria-haspopup = 'true' data-menu-id = 'rc-menu-uuid-80608-1-rc-menu-more'
+                            aria-controls = 'rc-menu-uuid-80608-1-rc-menu-more-popup'>
+                            <span
+                                role = 'img' aria-label = 'ellipsis'
+                                className = 'anticon anticon-ellipsis'>
+                                <svg
+                                    viewBox = '64 64 896 896' focusable = 'false'
+                                    data-icon = 'ellipsis' width = '1em'
+                                    height = '1em' fill = 'currentColor'
+                                    aria-hidden = 'true'>
+                                    <path d = 'M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z'></path>
+                                </svg>
+                            </span>
+                            <i className = 'ant-menu-submenu-arrow'></i>
+                        </div>
+                    </li>
+                </ul>
+                <div aria-hidden = 'true' style = { { display: 'none' } }></div>
+            </HeaderWrapper>
+            <MainWrapper className = 'ant-layout-content'>
+                <div className = 'Toastify'></div>
                 <div className = 'ant-table-wrapper'>
                     <div className = 'ant-spin-nested-loading'>
                         <div className = 'ant-spin-container'>
@@ -21,6 +145,17 @@ export const LatestFilmPage: FC = () => {
                                 </div>
                                 <div className = 'ant-table-container'>
                                     <div className = 'ant-table-content'>
+                                        <Table dataSource = { dataSource } columns = { columns } >
+                                            <colgroup>
+                                                <col style = { { width: '15%' } } />
+                                                <col style = { { width: '10%' } } />
+                                                <col style = { { width: '10%' } } />
+                                                <col style = { { width: '10%' } } />
+                                                <col style = { { width: '10%' } } />
+                                                <col />
+                                                <col style = { { width: '150px' } } />
+                                            </colgroup>
+                                        </Table>;
                                         <table style = { { tableLayout: 'auto' } }>
                                             <colgroup>
                                                 <col style = { { width: '15%' } } />
@@ -80,7 +215,7 @@ export const LatestFilmPage: FC = () => {
                                                     <td className = 'ant-table-cell' style = { { textAlign: 'center' } }>8.2</td>
                                                     <td className = 'ant-table-cell' style = { { textAlign: 'left' } }>Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface.</td>
                                                     <td className = 'ant-table-cell' style = { { textAlign: 'center' } }>
-                                                        <a href = '/movies/films/508943'>Подробнее...</a>
+                                                        <Link to = '/movies/films/508943'>Подробнее...</Link>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -125,8 +260,8 @@ export const LatestFilmPage: FC = () => {
                     </div>
                 </div>
                 <div className = 'ant-back-top'></div>
-            </main>
-        </section>
+            </MainWrapper>
+        </SectionWrapper>
     );
 };
 

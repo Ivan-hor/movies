@@ -1,2 +1,2 @@
 export * from './greeting';
-export * from './latest-films';
+export * from './latest-movies/latest-movies';

@@ -26,4 +26,7 @@ export const api = Object.freeze({
     getTopRated: (page: number) => {
         return axios.get(`${root}/top-rated?page=${page}`);
     },
+    getLatestMovies: () => {
+        return axios.get(`${root}/latest-movie`);
+    },
 });
