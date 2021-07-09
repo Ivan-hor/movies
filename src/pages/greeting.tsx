@@ -2,7 +2,7 @@
 import { Typography } from 'antd';
 
 import { SectionWrapper, MainWrapper } from '../components/styles';
-import { Header } from '../components';
+import { HeaderWrapper } from '../components';
 
 const { Title } = Typography;
 
