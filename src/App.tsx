@@ -43,7 +43,7 @@ export const App: FC = observer(() => {
             <ToastContainer newestOnTop transition = { Slide } />
 
             <SectionWrapper className = 'ant-layout'>
-                <Header />
+                <HeaderWrapper />
                 <MainWrapper className = 'ant-layout-content' >
                     <Routes>
                         <Route path = '/' element = { <Outlet /> }>
