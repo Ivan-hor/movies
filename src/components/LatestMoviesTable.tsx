@@ -1,3 +1,4 @@
+// @ts-check
 import { useState, useEffect } from 'react';
 import { Table, Image } from 'antd';
 import { Link } from 'react-router-dom';
@@ -19,7 +20,7 @@ const tableTitle = () => (
 
 export const LatestMovies = () => {
     const { data, isFetched } = useLatestMovie();
-    const [latestMovie, setLatestMovie] = useState();
+    const [latestMovie, setLatestMovie] = useState<ILatestMovie | null>();
 
     useEffect(() => {
         if (isFetched) {
