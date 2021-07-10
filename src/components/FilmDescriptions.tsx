@@ -2,11 +2,15 @@
 import { FC } from 'react';
 import { Descriptions  } from 'antd';
 
-import { IFilmDetailsModel } from '../types';
-
 const { Item } = Descriptions;
 
-interface IFilmDescriptionsProp extends IFilmDetailsModel {
+interface IFilmDescriptionsProp {
+    release_date: string;
+    status: string;
+    vote_average: number;
+    vote_count: number;
+    genres: string[];
+    overview: string;
 }
 
 export const FilmDescriptions: FC<IFilmDescriptionsProp> = ({

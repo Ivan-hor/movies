@@ -6,7 +6,7 @@ import {
 
 import { useFilm } from '../hooks';
 
-import { FilmDescriptions } from '../components';
+import { FilmDescriptions, FilmStatistic } from '../components';
 
 const { Title } = Typography;
 
@@ -35,7 +35,7 @@ export const FilmPage:FC = () => {
                 </Col>
             </Row>
             <FilmDescriptions { ...film } />
-
+            <FilmStatistic { ...film } />
         </>
     );
 };
