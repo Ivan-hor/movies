@@ -1,2 +1,2 @@
 export * from './useStore';
-export * from './useLatestFilms';
+export * from './useLatestMovie';
