@@ -53,8 +53,6 @@ export const PopularFilmsTable = () => {
     ];
 
     if (query.isFetched) {
-        console.log(query.data);
-
         return (
             <Table
                 columns = { columns }
