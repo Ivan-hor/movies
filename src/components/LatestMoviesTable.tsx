@@ -88,17 +88,13 @@ export const LatestMovies = () => {
 
     if (latestMovie) {
         return (
-            <SectionWrapper className = 'ant-layout'>
-                <HeaderWrapper />
-                <MainWrapper className = 'ant-layout-content'>
-                    <Table
-                        bordered
-                        pagination = { false }
-                        title = { () => tableTitle() }
-                        columns = { columns }
-                        dataSource = { [{ ...latestMovie, key: 1 }] } />
-                </MainWrapper>
-            </SectionWrapper>
+            <Table
+                bordered
+                pagination = { false }
+                title = { () => tableTitle() }
+                columns = { columns }
+                dataSource = { [{ ...latestMovie, key: 1 }] } />
+
         );
     }
 

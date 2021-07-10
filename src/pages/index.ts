@@ -1,2 +1,3 @@
 export * from './greeting';
-export * from './latest-movies';
+export * from './LatestFilm';
+export * from './PopularFilms';

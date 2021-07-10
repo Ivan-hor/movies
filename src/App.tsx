@@ -6,18 +6,18 @@ import {
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import { observer } from 'mobx-react-lite';
 
-
 // Components
 import {
     Greeting,
-    LatestFilmPage,
+    LatestFilm,
+    PopularFilms,
 } from './pages';
-
-// Temp
-import { Test } from './pages/test';
+import { HeaderWrapper, Footer } from './components';
+import { MainWrapper, SectionWrapper } from './components/styles';
 
 /* Other */
 import { useStore } from './hooks';
+
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -44,15 +44,23 @@ export const App: FC = observer(() => {
         <>
             <ToastContainer newestOnTop transition = { Slide } />
 
-            <Routes>
-                <Route path = '/' element = { <Outlet /> }>
-                    <Route path = '/' element = { <Greeting /> } />
-                    <Route path = '/latest-films' element = { <LatestFilmPage /> } />
-                    <Route path = '/popular-films' element = { <Test /> } />
-                </Route>
+            <SectionWrapper className = 'ant-layout'>
+                <HeaderWrapper />
+                <MainWrapper className = 'ant-layout-content' >
+                    <Routes>
+                        <Route path = '/' element = { <Outlet /> }>
+                            <Route path = '/' element = { <Greeting /> } />
+                            <Route path = '/popular-films' element = { <PopularFilms /> } />
+                            <Route path = '/latest-films' element = { <LatestFilm /> } />
+                        </Route>
 
-                <Route path = '*' element = { <Navigate to = '/' /> } />
-            </Routes>
+                        <Route path = '*' element = { <Navigate to = '/' /> } />
+                    </Routes>
+                </MainWrapper>
+                <Footer />
+            </SectionWrapper>
+
+
         </>
     );
 });

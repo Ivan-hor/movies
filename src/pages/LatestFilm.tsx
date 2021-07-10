@@ -2,7 +2,7 @@ import { HeaderWrapper } from '../components';
 import { LatestMovies } from '../components/LatestMoviesTable';
 import { SectionWrapper, MainWrapper } from '../components/styles';
 
-export const LatestFilmPage = () => {
+export const LatestFilm = () => {
     return (
         <SectionWrapper className = 'ant-layout'>
             <HeaderWrapper />
