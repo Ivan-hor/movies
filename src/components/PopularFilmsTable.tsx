@@ -48,7 +48,7 @@ export const PopularFilmsTable = () => {
             dataIndex: 'id',
             key:       'details',
             // eslint-disable-next-line
-            render:    (id: number) => <Link to = { `/films/${id}` }>Подробнее...</Link>,
+            render:    (id: number) => <Link to = { `/film/${id}` }>Подробнее...</Link>,
         },
     ];
 
