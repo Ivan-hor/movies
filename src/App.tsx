@@ -11,6 +11,7 @@ import {
     Greeting,
     LatestFilm,
     PopularFilms,
+    TopRatedFilms,
 } from './pages';
 import { HeaderWrapper, Footer } from './components';
 import { MainWrapper, SectionWrapper } from './components/styles';
@@ -52,6 +53,7 @@ export const App: FC = observer(() => {
                             <Route path = '/' element = { <Greeting /> } />
                             <Route path = '/popular-films' element = { <PopularFilms /> } />
                             <Route path = '/latest-films' element = { <LatestFilm /> } />
+                            <Route path = '/top-rated-films' element = { <TopRatedFilms /> } />
                         </Route>
 
                         <Route path = '*' element = { <Navigate to = '/' /> } />
