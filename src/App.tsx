@@ -14,7 +14,7 @@ import {
 /* Other */
 import { useStore } from './hooks';
 import { PopularFilms } from './pages/PopularFilms';
-import { Header } from './components';
+import { HeaderWrapper } from './components';
 import { MainWrapper, SectionWrapper } from './components/styles';
 
 export const App: FC = observer(() => {
