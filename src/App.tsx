@@ -50,7 +50,7 @@ export const App: FC = observer(() => {
                         <Route path = '/' element = { <Outlet /> }>
                             <Route path = '/' element = { <Greeting /> } />
                             <Route path = '/popular-films' element = { <PopularFilms /> } />
-                            <Route path = '/film' element = { <Outlet /> } >
+                            <Route path = '/films' element = { <Outlet /> } >
                                 <Route path = '/:id' element = { <FilmPage /> } />
                             </Route>
                         </Route>

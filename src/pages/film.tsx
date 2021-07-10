@@ -1,7 +1,14 @@
 import { FC, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import {
+    Typography, Image, Row,  Col,
+} from 'antd';
 
 import { useFilm } from '../hooks';
+
+import { FilmDescriptions } from '../components';
+
+const { Title } = Typography;
 
 export const FilmPage:FC = () => {
     const { id: filmId } = useParams();
@@ -9,18 +16,26 @@ export const FilmPage:FC = () => {
 
     const { data: film, isFetchedAfterMount } = useFilm(filmId);
 
-    console.log('===>', film);
-
     useEffect(() => {
         if (!film && isFetchedAfterMount) {
             navigate('/popular-films', { replace: true });
         }
     }, [film, isFetchedAfterMount]);
 
+    if (!film) { return null; }
 
     return (
-        <div>
-            FilmPage { filmId } <b>{ film?.title }</b>
-        </div>
+        <>
+            <Title>{ film.title }</Title>
+            <Row justify = 'start' align = 'middle'>
+                <Col span = { 12 }>
+                    <Image
+                        width = { 200 }
+                        src = { film.poster_path } />
+                </Col>
+            </Row>
+            <FilmDescriptions { ...film } />
+
+        </>
     );
 };

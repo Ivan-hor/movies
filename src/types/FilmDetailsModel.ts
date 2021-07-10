@@ -1,4 +1,4 @@
-export interface IFilmDetailsModel {
+export interface IFilmDetailsModel{
     budget: number;
     genres: string[];
     id: number;
@@ -11,12 +11,5 @@ export interface IFilmDetailsModel {
     title: string;
     vote_average: number;
     vote_count: number;
-}
-
-export enum GenresEnum {
-    ANIMATION = 'Animation',
-    COMEDY = 'Comedy',
-    FAMILY = 'Family',
-    FANTASY = 'Fantasy',
 }
 
