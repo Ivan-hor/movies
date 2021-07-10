@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { api } from '../api';
 
 export const useLatestMovie = () => {
-    const query = useQuery(['latest'], () => api.getLatestMovies);
+    const query = useQuery(['latest'], api.getLatestMovies);
     const { data, isFetched } = query;
 
     return { data, isFetched };

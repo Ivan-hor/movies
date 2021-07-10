@@ -1,15 +1,10 @@
 // @ts-check
-import { useState, useEffect } from 'react';
 import { Table, Image } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { ILatestMovie } from '../types/latestMovieModel';
 import { useLatestMovie } from '../hooks';
-import {
-    HeaderWrapper, SectionWrapper, MainWrapper,
-} from './styles';
-import 'antd/dist/antd.css';
 import { LatestMovieTableWrapper } from './styles/LatestMovie.style';
+
 
 const tableTitle = () => (
     <LatestMovieTableWrapper >
@@ -20,14 +15,6 @@ const tableTitle = () => (
 
 export const LatestMovies = () => {
     const { data, isFetched } = useLatestMovie();
-    const [latestMovie, setLatestMovie] = useState<ILatestMovie | null>();
-
-    useEffect(() => {
-        if (isFetched) {
-            // eslint-disable-next-line promise/catch-or-return
-            data.then((movie: ILatestMovie) => setLatestMovie(movie.data.data));
-        }
-    }, [isFetched]);
 
     const columns = [
         {
@@ -49,6 +36,8 @@ export const LatestMovies = () => {
             dataIndex: 'release_date',
             key:       'release_date',
             width:     '10%',
+            // eslint-disable-next-line
+            render:    (view: string) => view ? view : 'отсутствует',
         },
         {
             title:     'Доходность',
@@ -86,15 +75,15 @@ export const LatestMovies = () => {
         },
     ];
 
-    if (latestMovie) {
+    if (isFetched) {
         return (
             <Table
                 bordered
                 pagination = { false }
                 title = { () => tableTitle() }
                 columns = { columns }
-                dataSource = { [{ ...latestMovie, key: 1 }] } />
-
+                // TODO dinamic key ?????????????
+                dataSource = { [{ ...data, key: 1 }] } />
         );
     }
 
