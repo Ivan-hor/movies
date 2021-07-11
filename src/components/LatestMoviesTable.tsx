@@ -71,7 +71,6 @@ export const LatestMovies = () => {
             width:     '150px',
             // eslint-disable-next-line
             render:    (id: number) => <Link to = { `/movie-details/${id}` }>Подробнее...</Link>,
-
         },
     ];
 
@@ -82,8 +81,8 @@ export const LatestMovies = () => {
                 pagination = { false }
                 title = { () => tableTitle() }
                 columns = { columns }
-                // TODO dinamic key ?????????????
-                dataSource = { [{ ...data, key: 1 }] } />
+                rowKey = 'id'
+                dataSource = { [{ ...data }] } />
         );
     }
 
