@@ -1,25 +1,35 @@
 
 // filmid:string
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { format } from 'date-fns';
 import {
-    Table, Image, Rate, PageHeader,
+    Table, Image, PageHeader, Rate,
 } from 'antd';
-
+import { TableWrap } from './styles';
 import { useRecomendate, useVote } from '../hooks';
 
 export const RecommendationsMovies :FC = (props) => {
-    const  [vote, setVote] = useState('');
-    // @ts-ignore
     const {
         data: films,
 
     } = useRecomendate(props.filmid);
+    const getQuote = (vote:number):number => {
+        const voteorg = vote / 2.0;
+
+        return Math.round(2 * voteorg) / 2;
+    };
     // eslint-disable-next-line max-len
     const sourceList = films?.data?.data.slice(0, Math.min(5, films?.data?.data.length));
-    const getVote = (filmId:string):string => {
-        setVote(useVote(filmId));
+    const filmRating = (filmId4Rating:string) => {
+        const vote = useVote(filmId4Rating);
+        const ret = <Rate
+            disabled
+            allowHalf
+            value = { getQuote(vote?.data?.vote_average) } />;
 
-        return vote;
+        return (
+            { ret }
+        );
     };
     const columns = [
         {
@@ -38,31 +48,32 @@ export const RecommendationsMovies :FC = (props) => {
             title:     'Название',
             dataIndex: 'title',
             key:       'title',
+            width:     '10%',
+            id:        'title',
         },
         {
             title:     'Популярность',
-            key:       'popularity',
-            dataIndex: 'popularity',
+            key:       `${Math.round(Math.random() * 1000000)}`,
+            dataIndex: 'vote_average',
             align:     'center',
-            render(text: string, _record: any) {
-                getVote(_record.id);
-                console.log('render', vote);
+            render(text: number) {
+                return <Rate
+                    disabled
+                    allowHalf
+                    value = { getQuote(text) } />;
 
-                return <Rate disabled defaultValue = {  parseFloat(vote) / 2.0 } />;
+                // return filmRating(_record.id);
+                // return <FilmRating flagId = { _record.id } />;
             },
         },
 
         {
             title:     'Дата выхода',
             dataIndex: 'release_date',
-            key:       'release_date',
-            width:     'auto',
+            key:       `${Math.round(Math.random() * 1000000)}`,
+            className: 'nowrap',
             render:    (date: string) => {
-                const d: Date = new Date(date);
-                console.log(d.getFullYear(), d.getMonth(), d.getDate());
-                const m = d.getMonth() - 1;
-
-                return `${d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()}.${m < 10 ? `0${m}` : m}.${d.getFullYear()}`;
+                return format(new Date(date), 'dd.MM.yyyy');
             },
         },
 
@@ -71,16 +82,18 @@ export const RecommendationsMovies :FC = (props) => {
             dataIndex: 'overview',
             key:       'overview',
             width:     '30%',
+            className: 'overflow-ellipsis',
         },
 
         {
-            title:     'Детали',
-            dataIndex: 'id',
-            key:       'id',
-            width:     210,
-
+            title:        'Детали',
+            dataIndex:    'id',
+            key:          'id',
+            overflow:     'hidden',
+            textOverflow: 'ellipsis',
+            className:    'nowrap, overflow-ellipsis',
             render(text: string) {
-                return <a href = { `./${text}` }>Подробнее...</a>;
+                return <a href = { `./${text}` }>Подробнее</a>;
             },
         },
     ]; const
@@ -88,9 +101,9 @@ export const RecommendationsMovies :FC = (props) => {
 
 
     return (
-        <main>
+        <TableWrap>
             <PageHeader   title = { 'Рекомендуемые фильмы' } />
             { table }
-        </main>
+        </TableWrap>
     );
 };
