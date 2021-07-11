@@ -24,6 +24,11 @@ export const FilmPage:FC = () => {
 
     if (!film) { return null; }
 
+    const {
+        popularity, budget, revenue, release_date, status,
+        vote_average, vote_count, genres, overview,
+    } = film;
+
     return (
         <>
             <Title>{ film.title }</Title>
@@ -34,8 +39,17 @@ export const FilmPage:FC = () => {
                         src = { film.poster_path } />
                 </Col>
             </Row>
-            <FilmDescriptions { ...film } />
-            <FilmStatistic { ...film } />
+            <FilmDescriptions
+                release_date = { release_date }
+                status = { status }
+                vote_average = { vote_average }
+                vote_count = { vote_count }
+                genres = { genres }
+                overview = { overview } />
+            <FilmStatistic
+                popularity = { popularity }
+                budget = { budget }
+                revenue = { revenue } />
         </>
     );
 };
