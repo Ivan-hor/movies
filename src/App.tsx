@@ -17,6 +17,7 @@ import {
 import { useStore } from './hooks';
 import { HeaderWrapper, Footer } from './components';
 import { MainWrapper, SectionWrapper } from './components/styles';
+import { TopRatedFilms } from './pages/TopRatedFilms';
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -53,6 +54,7 @@ export const App: FC = observer(() => {
                             <Route path = '/films' element = { <Outlet /> } >
                                 <Route path = '/:id' element = { <FilmPage /> } />
                             </Route>
+                            <Route path = '/top-rated-films' element = { <TopRatedFilms /> } />
                         </Route>
 
                         <Route path = '*' element = { <Navigate to = '/' /> } />

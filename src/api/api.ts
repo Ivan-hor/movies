@@ -5,6 +5,23 @@ import { IFilmDetailsModel } from '../types';
 // Configs
 import { root } from './config';
 
+enum Genre {
+    'Comedy',
+    'Drama',
+    'Romance',
+}
+
+type Movie = {
+    'id': number,
+    'title': string,
+    'poster_path': string,
+    'vote_count': number,
+    'vote_average': number,
+    'overview': string,
+    'genres': Genre[],
+    'release_date': string,
+};
+
 export const api = Object.freeze({
     getMovie: async (filmId: string): Promise<IFilmDetailsModel> => {
         const { data } = await axios.get(`${root}/movie-details/${filmId}`);
@@ -28,7 +45,9 @@ export const api = Object.freeze({
     getTrendingMovies: (time: string) => {
         return axios.get(`${root}/trending/movie/${time}`);
     },
-    getTopRated: (page: number) => {
-        return axios.get(`${root}/top-rated?page=${page}`);
+    getTopRated: async (page: number) => {
+        const result = await axios.get<{ data: Movie[] }>(`${root}/top-rated?page=${page}`);
+
+        return result.data.data;
     },
 });
