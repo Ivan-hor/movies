@@ -14,13 +14,17 @@ export const FilmPage:FC = () => {
     const { id: filmId } = useParams();
     const navigate = useNavigate();
 
-    const { data: film, isFetchedAfterMount } = useFilm(filmId);
+    const { data: film, isFetchedAfterMount, isLoading } = useFilm(filmId);
 
     useEffect(() => {
         if (!film && isFetchedAfterMount) {
             navigate('/popular-films', { replace: true });
         }
     }, [film, isFetchedAfterMount]);
+
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
     if (!film) { return null; }
 
