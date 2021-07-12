@@ -7,4 +7,3 @@ export interface IPopularMovieModel {
     vote_average: number,
     overview: string,
 }
-

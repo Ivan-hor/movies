@@ -1,5 +1,6 @@
 // Core
 import axios from 'axios';
+import { IFilmDetailsModel } from '../types';
 
 // Configs
 import { root } from './config';
@@ -22,8 +23,10 @@ type Movie = {
 };
 
 export const api = Object.freeze({
-    getMovie: (filmId: string) => {
-        return axios.get(`${root}/movie-details/${filmId}`);
+    getMovie: async (filmId: string): Promise<IFilmDetailsModel> => {
+        const { data } = await axios.get(`${root}/movie-details/${filmId}`);
+
+        return data.data;
     },
     getSimilarMovies: (filmId: string) => {
         return axios.get(`${root}/${filmId}/similar`);
