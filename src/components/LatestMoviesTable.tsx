@@ -15,7 +15,6 @@ const tableTitle = () => (
 
 export const LatestMovies = () => {
     const { data, isFetched } = useLatestMovie();
-
     const columns = [
         {
             title:     'постер',
