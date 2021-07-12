@@ -82,7 +82,7 @@ export const LatestMovies = () => {
                 title = { () => tableTitle() }
                 columns = { columns }
                 rowKey = 'id'
-                dataSource = { [{ data }] } />
+                dataSource = { [data] } />
         );
     }
 

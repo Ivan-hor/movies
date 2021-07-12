@@ -9,27 +9,17 @@ import { observer } from 'mobx-react-lite';
 // Components
 import {
     Greeting,
-<<<<<<< HEAD
     LatestFilm,
     PopularFilms,
     TopRatedFilms,
-=======
     FilmPage,
-    PopularFilms,
->>>>>>> master
 } from './pages';
 import { HeaderWrapper, Footer } from './components';
 import { MainWrapper, SectionWrapper } from './components/styles';
 
 /* Other */
 import { useStore } from './hooks';
-<<<<<<< HEAD
 
-=======
-import { HeaderWrapper, Footer } from './components';
-import { MainWrapper, SectionWrapper } from './components/styles';
-import { TopRatedFilms } from './pages/TopRatedFilms';
->>>>>>> master
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
