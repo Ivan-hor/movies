@@ -84,6 +84,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
             case KeysOfList.release_date:
                 return (
                     {
+                        title:     'Дата выхода',
                         dataIndex: 'release_date',
                         key:       keyCol,
                         className: keyCol,
