@@ -1,3 +1,9 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .styles_header {
     display: flex;
     margin-bottom: 24px;
@@ -13,5 +19,6 @@
         -webkit-user-select: none;
         user-select: none;
         transform: skewY(170deg);
+        overflow: hidden;
     }
 }
