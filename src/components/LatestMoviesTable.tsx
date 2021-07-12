@@ -70,7 +70,7 @@ export const LatestMovies = () => {
             key:       'id',
             width:     '150px',
             // eslint-disable-next-line
-            render:    (id: number) => <Link to = { `/movie-details/${id}` }>Подробнее...</Link>,
+            render:    (id: number) => <Link to = { `/films/${id}` }>Подробнее...</Link>,
         },
     ];
 
