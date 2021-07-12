@@ -1,4 +1,4 @@
-import { Table, Tag, Space } from 'antd';
+import { Table, Image } from 'antd';
 
 
 import { useTopRatedFilms } from '../hooks/useTopRatedFilms';
@@ -8,22 +8,48 @@ export const TopRatedFilmsTable = () => {
 
     const columns = [
         {
-            title:     'Name',
+            title:     'Постер',
+            dataIndex: 'poster_path',
+            key:       'id',
+            width:     '10%',
+            // eslint-disable-next-line
+            render:    (url: string) => <Image
+                width = { 200 }
+                src = { url } />,
+        },
+        {
+            title:     'Название',
             dataIndex: 'title',
-            key:       'title',
+            key:       'id',
             // eslint-disable-next-line react/display-name
             // render:    (text) => <a>{ text }</a>,
         },
         {
-            title:     'release_date',
+            title:     'Дата релиза',
             dataIndex: 'release_date',
-            key:       'release_date',
+            key:       'id',
         },
-        // {
-        //     title:     'Address',
-        //     dataIndex: 'address',
-        //     key:       'address',
-        // },
+        {
+            title:     'Количество голосов',
+            dataIndex: 'vote_count',
+            key:       'id',
+        },
+        {
+            title:     'Средняя оценка',
+            dataIndex: 'vote_average',
+            key:       'id',
+        },
+        {
+            title:     'Жанры',
+            dataIndex: 'genres',
+            key:       'id',
+        },
+        {
+            title:     'Краткое описание',
+            dataIndex: 'overview',
+            key:       'id',
+        },
+
         // {
         //     title:     'Tags',
         //     key:       'tags',
@@ -60,9 +86,11 @@ export const TopRatedFilmsTable = () => {
     ];
 
     if (query.isFetched) {
-        console.log(query.data);
-
-        return <Table columns = { columns } dataSource = { query.data } />;
+        return <Table
+            columns = { columns }
+            dataSource = { query.data }
+            bordered
+            title = { () => 'Трендовые фильмы' } />;
     }
 
     return 'loading';
