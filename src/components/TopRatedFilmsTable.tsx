@@ -21,8 +21,6 @@ export const TopRatedFilmsTable = () => {
             title:     'Название',
             dataIndex: 'title',
             key:       'id',
-            // eslint-disable-next-line react/display-name
-            // render:    (text) => <a>{ text }</a>,
         },
         {
             title:     'Дата релиза',
@@ -49,40 +47,6 @@ export const TopRatedFilmsTable = () => {
             dataIndex: 'overview',
             key:       'id',
         },
-
-        // {
-        //     title:     'Tags',
-        //     key:       'tags',
-        //     dataIndex: 'tags',
-        //     // eslint-disable-next-line react/display-name
-        //     render:    (tags) => (
-        //         <>
-        //             { tags.map((tag) => {
-        //                 let color = tag.length > 5 ? 'geekblue' : 'green';
-        //                 if (tag === 'loser') {
-        //                     color = 'volcano';
-        //                 }
-        //
-        //                 return (
-        //                     <Tag color = { color } key = { tag }>
-        //                         { tag.toUpperCase() }
-        //                     </Tag>
-        //                 );
-        //             }) }
-        //         </>
-        //     ),
-        // },
-        // {
-        //     title:  'Action',
-        //     key:    'action',
-        //     // eslint-disable-next-line react/display-name
-        //     render: (text, record) => (
-        //         <Space size = 'middle'>
-        //             <a>Invite { record.name }</a>
-        //             <a>Delete</a>
-        //         </Space>
-        //     ),
-        // },
     ];
 
     if (query.isFetched) {

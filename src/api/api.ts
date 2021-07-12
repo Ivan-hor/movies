@@ -3,23 +3,7 @@ import axios from 'axios';
 
 // Configs
 import { root } from './config';
-
-enum Genre {
-    'Comedy',
-    'Drama',
-    'Romance',
-}
-
-type Movie = {
-    'id': number,
-    'title': string,
-    'poster_path': string,
-    'vote_count': number,
-    'vote_average': number,
-    'overview': string,
-    'genres': Genre[],
-    'release_date': string,
-};
+import { ITopRatedMovieModel } from '../types';
 
 export const api = Object.freeze({
     getMovie: (filmId: string) => {
@@ -41,7 +25,7 @@ export const api = Object.freeze({
         return axios.get(`${root}/trending/movie/${time}`);
     },
     getTopRated: async (page: number) => {
-        const result = await axios.get<{ data: Movie[] }>(`${root}/top-rated?page=${page}`);
+        const result = await axios.get<ITopRatedMovieModel[]>(`${root}/top-rated?page=${page}`);
 
         return result.data.data;
     },
