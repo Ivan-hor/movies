@@ -6,17 +6,18 @@ import {
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import { observer } from 'mobx-react-lite';
 
-
 // Components
 import {
     Greeting,
+    FilmPage,
+    PopularFilms,
 } from './pages';
-
-// Temp
-import { Test } from './pages/test';
 
 /* Other */
 import { useStore } from './hooks';
+import { HeaderWrapper, Footer } from './components';
+import { MainWrapper, SectionWrapper } from './components/styles';
+import { TopRatedFilms } from './pages/TopRatedFilms';
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -43,14 +44,27 @@ export const App: FC = observer(() => {
         <>
             <ToastContainer newestOnTop transition = { Slide } />
 
-            <Routes>
-                <Route path = '/' element = { <Outlet /> }>
-                    <Route path = '/' element = { <Greeting /> } />
-                    <Route path = '/popular-films' element = { <Test /> } />
-                </Route>
+            <SectionWrapper className = 'ant-layout'>
+                <HeaderWrapper />
+                <MainWrapper className = 'ant-layout-content' >
+                    <Routes>
+                        <Route path = '/' element = { <Outlet /> }>
+                            <Route path = '/' element = { <Greeting /> } />
+                            <Route path = '/popular-films' element = { <PopularFilms /> } />
+                            <Route path = '/films' element = { <Outlet /> } >
+                                <Route path = '/:id' element = { <FilmPage /> } />
+                            </Route>
+                            <Route path = '/top-rated-films' element = { <TopRatedFilms /> } />
+                        </Route>
 
-                <Route path = '*' element = { <Navigate to = '/' /> } />
-            </Routes>
+                        <Route path = '*' element = { <Navigate to = '/' /> } />
+                    </Routes>
+                </MainWrapper>
+                <Footer />
+
+            </SectionWrapper>
+
+
         </>
     );
 });
