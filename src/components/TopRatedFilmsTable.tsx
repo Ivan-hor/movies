@@ -8,7 +8,10 @@ import { KeysOfList } from '../types';
 export const TopRatedFilmsTable = () => {
     const query = useTopRatedFilms(1);
 
-    const columns = getColumns([KeysOfList.title, KeysOfList.release_date]);
+    const columns = getColumns([
+        KeysOfList.title,
+        KeysOfList.release_date
+    ]);
     if (query.isFetched) {
         // console.log(query.data);
 
