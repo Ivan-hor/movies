@@ -99,7 +99,6 @@ export const RecommendationsMovies :FC = (props) => {
     ]; const
         table = films?.data ? <Table columns = { columns } dataSource = { sourceList } /> : null;
 
-
     return (
         <TableWrap>
             <PageHeader   title = { 'Рекомендуемые фильмы' } />
