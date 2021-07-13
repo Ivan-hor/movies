@@ -50,4 +50,9 @@ export const api = Object.freeze({
 
         return result.data.data;
     },
+    getLatestMovies: async () => {
+        const response =  await axios.get(`${root}/latest-movie`);
+
+        return response.data.data;
+    },
 });

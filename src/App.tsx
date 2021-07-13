@@ -9,15 +9,17 @@ import { observer } from 'mobx-react-lite';
 // Components
 import {
     Greeting,
-    FilmPage,
+    LatestFilm,
     PopularFilms,
+    TopRatedFilms,
+    FilmPage,
 } from './pages';
+import { HeaderWrapper, Footer } from './components';
+import { MainWrapper, SectionWrapper } from './components/styles';
 
 /* Other */
 import { useStore } from './hooks';
-import { HeaderWrapper, Footer } from './components';
-import { MainWrapper, SectionWrapper } from './components/styles';
-import { TopRatedFilms } from './pages/TopRatedFilms';
+
 
 export const App: FC = observer(() => {
     const { uiStore } = useStore();
@@ -51,6 +53,7 @@ export const App: FC = observer(() => {
                         <Route path = '/' element = { <Outlet /> }>
                             <Route path = '/' element = { <Greeting /> } />
                             <Route path = '/popular-films' element = { <PopularFilms /> } />
+                            <Route path = '/latest-films' element = { <LatestFilm /> } />
                             <Route path = '/films' element = { <Outlet /> } >
                                 <Route path = '/:id' element = { <FilmPage /> } />
                             </Route>
@@ -61,7 +64,6 @@ export const App: FC = observer(() => {
                     </Routes>
                 </MainWrapper>
                 <Footer />
-
             </SectionWrapper>
 
 

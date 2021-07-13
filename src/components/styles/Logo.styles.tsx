@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Logo = styled.section`
-display: flex;
+    display: flex;
     align-content: center;
     justify-content: center;
     margin-right: 25px;
