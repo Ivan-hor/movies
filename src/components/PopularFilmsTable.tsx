@@ -4,14 +4,21 @@ import { usePopularFilms } from '../hooks';
 import { KeysOfList } from '../types';
 import { getColumns } from './MoviesLIst';
 
+// temporaly alias
+const ColumnsKeys = KeysOfList;
+
 export const PopularFilmsTable = () => {
     const query = usePopularFilms(1);
-    const header :Array<KeysOfList> = [
-        KeysOfList.poster_path, KeysOfList.title, KeysOfList.popularity,
-        KeysOfList.vote_count, KeysOfList.vote_average, KeysOfList.overview, KeysOfList.details,
-    ];
-    const columns = getColumns(header);
 
+    const columns = getColumns([
+        ColumnsKeys.poster_path,
+        ColumnsKeys.title,
+        ColumnsKeys.popularity,
+        ColumnsKeys.vote_count,
+        ColumnsKeys.vote_average,
+        ColumnsKeys.overview,
+        ColumnsKeys.details,
+    ]);
 
     if (query.isFetched) {
         return (
