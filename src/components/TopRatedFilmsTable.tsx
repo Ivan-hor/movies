@@ -10,7 +10,7 @@ export const TopRatedFilmsTable = () => {
 
     const columns = getColumns([
         KeysOfList.title,
-        KeysOfList.release_date
+        KeysOfList.release_date,
     ]);
     if (query.isFetched) {
         // console.log(query.data);
