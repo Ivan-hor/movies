@@ -17,7 +17,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         title:     'Постер',
                         dataIndex: keyCol,
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
 
                         render(url: string) {
                             return (<Image
@@ -39,7 +39,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         title:     'Популярность',
                         dataIndex: keyCol,
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
                     }
                 );
 
@@ -49,7 +49,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         title:     'Количество голосов',
                         dataIndex: keyCol,
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
                     }
                 );
             case KeysOfList.vote_average:
@@ -58,7 +58,19 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         title:     'Средняя оценка',
                         dataIndex: keyCol,
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
+                    }
+                );
+            case KeysOfList.genres:
+                return (
+                    {
+                        title:     'Жанры',
+                        dataIndex: keyCol,
+                        key:       keyCol,
+                        className: keyCol,
+                        render(genres: string[]) {
+                            return genres.map((el) => <p key = { el }>{ el }</p>);
+                        },
                     }
                 );
             case KeysOfList.overview:
@@ -68,7 +80,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         width:     '20%',
                         dataIndex: keyCol,
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
                     }
                 );
             case KeysOfList.details:
@@ -77,7 +89,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                         title:     'Детали',
                         dataIndex: 'id',
                         key:       keyCol,
-                        clasName:  keyCol,
+                        className: keyCol,
                         render(id: number) { return <Link to = { `/films/${id}` }>Подробнее...</Link>; },
                     }
                 );
@@ -96,9 +108,9 @@ export const getColumns = (keys:Array<KeysOfList>) => {
             case KeysOfList.vote_average_as_stars:
                 return (
                     {
-                        title:    'Популярность',
-                        key:      keyCol,
-                        clasName: keyCol,
+                        title:     'Популярность',
+                        key:       keyCol,
+                        className: keyCol,
                         render(id: number) {
                             return <Rate
                                 disabled
@@ -112,7 +124,7 @@ export const getColumns = (keys:Array<KeysOfList>) => {
                     title:     `Undefined :${keyCol}`,
                     dataIndex: keyCol,
                     key:       keyCol,
-                    clasName:  keyCol,
+                    className: keyCol,
                 };
         }
 

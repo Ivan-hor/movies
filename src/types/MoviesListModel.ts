@@ -9,6 +9,5 @@ export enum KeysOfList {
     overview = 'overview',
     details = 'details',
     release_date = 'release_date',
-
-
+    genres = 'genres',
 }
