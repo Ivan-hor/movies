@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Table } from 'antd';
 
 
@@ -6,7 +7,12 @@ import { getColumns } from './MoviesLIst';
 import { KeysOfList } from '../types';
 
 export const TopRatedFilmsTable = () => {
-    const query = useTopRatedFilms(1);
+    const [page, setPage] = useState(1);
+    const query = useTopRatedFilms(page);
+
+    const onChange = (newPage: number) => {
+        setPage(newPage);
+    };
 
     const columns = getColumns([
         KeysOfList.poster_path,
@@ -19,12 +25,13 @@ export const TopRatedFilmsTable = () => {
         KeysOfList.details,
     ]);
     if (query.isFetched) {
-        // console.log(query.data);
+        console.log(query.data);
 
         return <Table
             rowKey = 'id'
             columns = { columns }
-            dataSource = { query.data } />;
+            dataSource = { query.data }
+            pagination = { { onChange, total: 1000, showSizeChanger: false } } />;
     }
 
     return <>loading</>;
